@@ -18,7 +18,7 @@ This package is in reasonable shape and covers most of the Quilt Python API. Pul
 ### Installation
 
 * `devtools::install_github('stillmatic/quiltr')`
-* `pip install quilt`
+* `pip install quilt3`
 * `pip install git+git://github.com/quiltdata/quilt` - you probably need this
 
 If you have trouble testing in Rstudio, follow [instructions](https://stackoverflow.com/questions/31121645/rstudio-shows-a-different-path-variable) to set the proper PATH for Rstudio.

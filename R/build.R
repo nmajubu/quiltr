@@ -10,12 +10,12 @@
 #' data(iris)
 #' qbuild("hua/iris", iris = iris)
 qbuild <- function(pkg, ...) {
-    quilt <- reticulate::import("quilt")
+    quilt3 <- reticulate::import("quilt3")
     pyfeather <- reticulate::import(module = "feather")
 
     pkg_split <- stringr::str_split(pkg, "/")[[1]]
 
-    store <- reticulate::import("quilt.tools.store")
+    store <- reticulate::import("quilt3.tools.store")
     pkg_obj <- store$PackageStore$find_package(pkg_split[1], pkg_split[2])
     # if(!is.null(pkg_obj)) {
         # pkg_path <- pkg_obj.get_path()
@@ -40,7 +40,7 @@ qbuild <- function(pkg, ...) {
             write.csv(files[i], file = file_path)
         }
     }
-    quilt$build(pkg, pkg_path)
+    quilt3$build(pkg, pkg_path)
 
     # unlink(pkg_path, recursive = TRUE)
 }
@@ -57,6 +57,6 @@ qbuild <- function(pkg, ...) {
 #' @examples
 #' qpush("hua/test", TRUE)
 qpush <- function(pkg, public = FALSE, reupload = FALSE) {
-    quilt <- reticulate::import("quilt")
-    quilt$push(pkg, public, reupload)
+    quilt3 <- reticulate::import("quilt3")
+    quilt3$push(pkg, public, reupload)
 }

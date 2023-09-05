@@ -20,12 +20,12 @@ qload <- function(pkg, file) {
     }
 
     pkg_pythonic <- stringr::str_replace_all(pkg, "/", "\\.")
-    pkg_name <- paste0("quilt.data.", pkg_pythonic)
+    pkg_name <- paste0("quilt3.data.", pkg_pythonic)
     data <- reticulate::import(module = pkg_name)
     file <- stringr::str_replace_all(file, "/", "$")
 
     df <- eval(parse(text = paste0("data$", file, "()")))
-    tmp <- tempfile(pattern = "quilt", fileext = "feather")
+    tmp <- tempfile(pattern = "quilt3", fileext = "feather")
     pyfeather <- reticulate::import(module = "feather")
     pyfeather$write_dataframe(df$copy(), tmp)
     feather::read_feather(tmp)

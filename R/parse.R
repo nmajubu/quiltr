@@ -11,7 +11,7 @@
 #' qparse("examples/wine", "quality/red")
 #' qparse("akarve/seattle_911", "responses")
 qparse <- function(pkg_name, file) {
-    tools <- reticulate::import(module = "quilt.tools")
+    tools <- reticulate::import(module = "quilt3.tools")
     pkg_pythonic <- stringr::str_replace_all(pkg_name, "/", "\\.")
     stripped_pkg <- stringr::str_split(pkg_pythonic, "\\.")[[1]]
     pkg <- tools$store$PackageStore$find_package(stripped_pkg[1], stripped_pkg[2])
