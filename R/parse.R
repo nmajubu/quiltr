@@ -21,7 +21,12 @@ qparse <- function(pkg_name, file) {
     print(paste("stripped_pkg is:", stripped_pkg))
     print(paste("stripped_pkg[1] is:", stripped_pkg[1]))
     print(paste("stripped_pkg[2] is:", stripped_pkg[2]))
-    pkg <- tools$store$PackageStore$find_package(stripped_pkg[1], stripped_pkg[2])
+    # pkg <- tools$store$PackageStore$find_package(stripped_pkg[1], stripped_pkg[2])
+    tryCatch({
+        pkg <- tools$store$PackageStore$find_package(stripped_pkg[1], stripped_pkg[2])
+    }, error = function(e) {
+        print(paste("Python error:", reticulate::py_last_error()))
+    })
     contents <- pkg$get_contents()
 
     # strip first layer of 'children'
