@@ -13,11 +13,11 @@
 #' \dontrun{qlogin()}
 qlogin <- function(quilt_url = 'https://pkg.quiltdata.com') {
     # QUILT_PKG_URL = os.environ.get('QUILT_PKG_URL', DEFAULT_QUILT_PKG_URL)
-    quilt3 <- reticulate::import("quilt3")
+    quilt <- reticulate::import("quilt")
     login_url <- sprintf("%s/login", quilt_url)
     browseURL(login_url)
     refresh_token <- readline("Enter the code from the page: ")
-    quilt3$login_with_token(refresh_token)
+    quilt$login_with_token(refresh_token)
 }
 
 #' Log out of Quilt
@@ -28,8 +28,8 @@ qlogin <- function(quilt_url = 'https://pkg.quiltdata.com') {
 #' @examples
 #' \dontrun{qlogout()}
 qlogout <- function() {
-    quilt3 <- reticulate::import("quilt3")
-    quilt3$logout()
+    quilt <- reticulate::import("quilt")
+    quilt$logout()
 }
 
 #' See who has access to a package
@@ -42,6 +42,6 @@ qlogout <- function() {
 #' @examples
 #' qaccess_list("hua/iris")
 qaccess_list <- function(pkg) {
-    quilt3 <- reticulate::import("quilt3")
-    quilt3$access_list(pkg)
+    quilt <- reticulate::import("quilt")
+    quilt$access_list(pkg)
 }

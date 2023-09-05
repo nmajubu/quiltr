@@ -6,7 +6,7 @@
 #' @examples
 #' qls()
 qls <- function() {
-    ret <- system("quilt3 ls", intern = T)
+    ret <- system("quilt ls", intern = T)
     return(ret)
 }
 
@@ -20,7 +20,7 @@ qls <- function() {
 #' @examples
 #' qsearch("akarve")
 qsearch <- function(str) {
-    ret <- system(paste("quilt3 search", str), intern = T)
+    ret <- system(paste("quilt search", str), intern = T)
     return(ret)
 }
 
@@ -41,7 +41,7 @@ qsearch <- function(str) {
 #' qpeek("akarve/examples", TRUE)
 qpeek <- function(pkg, robust=FALSE) {
     pkg_split <- stringr::str_split(pkg, "/")[[1]]
-    store <- reticulate::import("quilt3.tools.store")
+    store <- reticulate::import("quilt.tools.store")
     pkg_obj <- store$PackageStore$find_package(pkg_split[1], pkg_split[2])
     if(is.null(pkg_obj)) {
         stop("Package not installed")
@@ -85,7 +85,7 @@ qpeek <- function(pkg, robust=FALSE) {
 #' @examples
 #' \dontrun{qinstall('akarve/examples')}
 qinstall <- function(pkg, hash = NULL, version = NULL, tag = NULL) {
-    cmd <- sprintf("quilt3 install %s", pkg)
+    cmd <- sprintf("quilt install %s", pkg)
     if (!is.null(hash)) {
         cmd <- paste(cmd, "-x", hash)
     }

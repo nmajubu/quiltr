@@ -6,8 +6,8 @@ PANDAS <- NULL; PY_FEATHER <- NULL; QUILT <- NULL; PY_BULTIN <- NULL
             PANDAS <<- reticulate::import("pandas", delay_load = TRUE)
         }
 
-        if (reticulate::py_module_available("quilt3")) {
-            QUILT <<- reticulate::import("quilt3", delay_load = TRUE)
+        if (reticulate::py_module_available("quilt")) {
+            QUILT <<- reticulate::import("quilt", delay_load = TRUE)
         }
 
         if (reticulate::py_module_available("feather")) {
